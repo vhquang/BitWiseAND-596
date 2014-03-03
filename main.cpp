@@ -18,11 +18,7 @@ using namespace std;
 typedef void (*exec_func) (vector<long long> subset, int N, vector<long long> *output);
 
 bool compareVector (vector<long long> va, vector<long long> vb);
-double test(
-        void (*func) (vector<long long> subset, int N, vector<long long> *output),
-        int &correct,
-        int &total
-);
+double test(exec_func func, int &correct, int &total);
 
 
 QuangBitwiseAnd* quang;
@@ -35,10 +31,7 @@ void HaiWrapper(vector<long long> subset, int N, vector<long long> *output) {
     hai->run(subset, N, output);
 }
 
-void test1000(
-        string name,
-        void (*func) (vector<long long> subset, int N, vector<long long> *output)
-) {
+void test1000(string name, exec_func func) {
     int correct = 0, total = 0;
     double totalTime = 0.0;
     for (int i = 0; i < 1; ++i) {
@@ -70,11 +63,7 @@ bool compareVector (vector<long long> va, vector<long long> vb) {
 }
 
 
-double test(
-        void (*func) (vector<long long> subset, int N, vector<long long> *output),
-        int &correct,
-        int &total
-) {
+double test(exec_func func, int &correct, int &total) {
 
     vector<long long> input, result;
     int N;
